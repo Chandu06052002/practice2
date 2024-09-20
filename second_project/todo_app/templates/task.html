@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet">
+    <style>
+        #a{
+            text-align: left;
+        }
+        .container{
+            background-color:aqua;
+            text-align: center;
+            border-radius: 5px;
+            border-color: red;
+            border-style:solid;
+            padding:10px;
+            margin:5px;
+        }
+        .form_container{
+            background-color:yellow;
+            text-align:center;
+            border:2px blue solid;
+            padding-top:5px;
+            padding-bottom:5px;
+
+        }
+        thead{
+            background-color:blueviolet;
+            font-size: 15px;
+            color:white;
+            text-align: center;
+            font-style: italic;
+            font-weight: bold;
+            text-shadow: 5px;
+        }
+        table{
+            border:3px black double;
+            border-radius: 5px;
+            justify-content: center;
+        }
+        body{
+            text-align: center;
+        }
+        .header-background{
+            color:green;
+        }
+        tbody{
+            background-color:brown;
+            color:lightblue;
+            font-size:15px;
+            text-align:center;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="header-background">Todo List</h1>
+ 
+        <!-- Add Task Form -->
+       <div class="form_container">
+        <form method="POST" class="add-task-form">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="create">
+            <label for="task" style="display:none;">Task:</label>
+            <input type="text" id="task" name="task" required>
+            <input type="submit" value="Add Task">
+        </form>
+    </div>
+    
+        <!-- Task Management Table -->
+        <h1 id="a">List of Tasks</h1>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Task</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task.id }}</td>
+                    <td>{{ task.task }}</td>
+                    <td>
+                        <form method="POST" style="display:inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="update">
+                            <input type="hidden" name="task_id" value="{{ task.id }}">
+                            <label for="task-update-{{ task.id }}" style="display:none;">New Task:</label>
+                            <input type="text" id="task-update-{{ task.id }}" name="task" value="{{ task.task }}" required>
+                            <input type="submit" class="update-button" value="Update">
+                        </form>
+                    </td>
+                    <td>
+                        <form method="POST" style="display:inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="task_id" value="{{ task.id }}">
+                            <input type="submit" class="delete-button" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html> 

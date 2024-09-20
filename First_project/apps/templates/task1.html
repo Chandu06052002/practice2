@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body bg-color="Chandu">
+    <h1>STUDENT MARKS DETAILS</h1>
+    <form action="add" method="POST">
+        {% csrf_token %}
+        Name : <input type="text" name="Name"><br>
+        Reg no : <input type="text" name="Reg_no"><br>
+        Maths marks : <input type="text" name="Maths"><br>
+        Physics marks : <input type="text" name="Physics"><br>
+        Chemistry marks : <input type="text" name="Chemistry"><br>
+        English marks : <input type="text" name="English"><br>
+        <input type="Submit">
+     </form>
+</body>
+</html>

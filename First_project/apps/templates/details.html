@@ -1,0 +1,33 @@
+<table border="2px">
+    <tr>
+        <th> Name</th>
+        <th> Reg_no</th>
+        <th>Maths marks</th>
+        <th>Physics marks</th>
+        <th>Chemistry Marks</th>
+        <th>English Marks</th>
+        <th>Total_marks</th>
+        <th>Result</th>
+
+    </tr>
+    {% for a in a %}
+    <tr>
+        <td>{{ a.Name }}</td>
+        <td>{{ a.Reg_no }} </td>
+        <td>{{ a.Maths }}</td>
+        <td>{{ a.Physics }}</td>
+        <td>{{ a.Chemistry }}</td>
+        <td>{{ a.English }}</td>
+        <td>{{a.Maths|add:a.Physics|add:a.Chemistry|add:a.English}}</td>
+        <td>
+            {% with Total_marks=a.Maths|add:a.Physics|add:a.Chemistry|add:a.English %}
+            {% if Total_marks >= 200 %}
+                pass
+            {% else %}
+                fail
+            {% endif %}
+            {% endwith %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>

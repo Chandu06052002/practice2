@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outer_container{
+            background-color: aqua;
+            text-align:center;
+            padding:15px;
+            margin:20px;
+            border:2px red solid;
+        }
+        .heading_container{
+            color:blue;
+            background-color:yellow;
+            text-align: center;
+            text-decoration: double;
+            border-radius: 3px;
+            border-color:blueviolet;
+            border-style: solid;
+            padding:10px;
+            margin:10px;
+
+        }
+        .searchbar_container{
+            padding:5px;
+            background-color:pink;
+            border-color:orange;
+            border-radius:2px;
+            border-style:solid;
+            margin:10px;
+
+
+        }
+    </style>
+</head>
+<body>
+    <div class="outer_container">
+        <div class="heading_container">
+            <h1>To-Do list</h1>
+        </div>
+        <div class="searchbar_container">
+            <form>
+                {% csrf_token %}
+                <input type="text" placeholder="Enter items">
+                <input type="Submit">
+            </form>
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</body>
+</html>
